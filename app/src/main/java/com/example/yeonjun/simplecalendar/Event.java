@@ -5,18 +5,14 @@ package com.example.yeonjun.simplecalendar;
  */
 public class Event {
 
-    int year;
-    int month;
-    int day;
     String title;
-    int timeStart;
-    int timeEnd;
+    String description;
+    String timeStart;
+    String timeEnd;
 
-    public Event(int year, int month, int day, String title, int timeStart, int timeEnd){
-        this.year = year;
-        this.month = month;
-        this.day = day;
+    public Event(String title, String description, String timeStart, String timeEnd){
         this.title = title;
+        this.description=description;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
     }
