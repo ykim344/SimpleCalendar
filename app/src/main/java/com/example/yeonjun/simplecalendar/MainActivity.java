@@ -2,7 +2,10 @@ package com.example.yeonjun.simplecalendar;
 //https://www.youtube.com/watch?v=WnTKJKNB4kc
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.app.Fragment;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -27,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     Button selectBtn,addBtn,deleteBtn;
     ListView lv;
     int year_x, month_x, day_x;
-    Date currDate;
-    ArrayList<Date> dateList;
-    ArrayList<Event> eventsList;
+    static Date currDate;
+    static ArrayList<Date> dateList;
+    static ArrayList<Event> eventsList;
     EventAdapter adapter;
     Event workingEvent;
 
@@ -61,12 +64,12 @@ public class MainActivity extends AppCompatActivity {
         adapter=new EventAdapter(this, R.layout.row_layout,eventsList);
         lv.setAdapter(adapter);
 
-        showDialogOnButtonClick();
+        buttonClickhandler();
 
     }
 
 
-    public void showDialogOnButtonClick(){
+    public void buttonClickhandler(){
 
 
         selectBtn.setOnClickListener(
@@ -81,8 +84,11 @@ public class MainActivity extends AppCompatActivity {
         addBtn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        adapter.add(new Event("a","B","c","d"));
-                        adapter.notifyDataSetChanged();
+//                        adapter.add(new Event("a","B","c","d"));
+//                        adapter.notifyDataSetChanged();
+
+                        Intent i = new Intent(MainActivity.this, EventAddActivity.class);
+                        startActivity(i);
 
                     }
                 }
