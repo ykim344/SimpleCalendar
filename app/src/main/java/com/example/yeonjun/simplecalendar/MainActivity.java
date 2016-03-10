@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Date> dateList;
     ArrayList<Event> eventsList;
     EventAdapter adapter;
+    Event workingEvent;
 
     static final int DILOG_ID = 0;
     @Override
@@ -36,15 +39,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lv = (ListView) findViewById(R.id.container);
+        //lv.setChoiceMode(lv.CHOICE_MODE_SINGLE);
         selectBtn = (Button)findViewById(R.id.dateSelectButton);
-        addBtn = (Button)findViewById(R.id.dateSelectButton);
-        deleteBtn=(Button)findViewById(R.id.dateSelectButton);
+        addBtn = (Button)findViewById(R.id.addEventButton);
+        deleteBtn=(Button)findViewById(R.id.removeEventButton);
 
         //make the list clickable
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                workingEvent = eventsList.get(position);
             }
         });
         final Calendar cal = Calendar.getInstance();
@@ -54,11 +58,13 @@ public class MainActivity extends AppCompatActivity {
         currDate = null;
         dateList = new ArrayList<Date>();
         eventsList = new ArrayList<Event>();
-//        eventsList.add(new Event("title11","des","st","endd"));
-//        adapter=new EventAdapter(this, R.layout.row_layout,eventsList);
-//        lv.setAdapter(adapter);
+        adapter=new EventAdapter(this, R.layout.row_layout,eventsList);
+        lv.setAdapter(adapter);
+
         showDialogOnButtonClick();
+
     }
+
 
     public void showDialogOnButtonClick(){
 
@@ -82,16 +88,23 @@ public class MainActivity extends AppCompatActivity {
                 }
 
         );
-//
-//        deleteBtn.setOnClickListener(
-//                new View.OnClickListener() {
-//                    public void onClick(View v) {
-//
-//
-//                    }
-//                }
-//
-//        );
+
+        deleteBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        int pos = lv.getCheckedItemPosition();
+
+                        if (pos>-1){
+                            adapter.remove(eventsList.get(pos));
+                            adapter.notifyDataSetChanged();
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"select item first",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+        );
     }
 
     protected Dialog onCreateDialog(int id){

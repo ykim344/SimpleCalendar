@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add an Event"
-        android:id="@+id/eventSelectButton"
+        android:id="@+id/addEventButton"
         android:layout_gravity="center_horizontal" />
 
     <Button
