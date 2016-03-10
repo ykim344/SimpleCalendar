@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -39,7 +40,13 @@ public class MainActivity extends AppCompatActivity {
         addBtn = (Button)findViewById(R.id.dateSelectButton);
         deleteBtn=(Button)findViewById(R.id.dateSelectButton);
 
+        //make the list clickable
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            }
+        });
         final Calendar cal = Calendar.getInstance();
         year_x = cal.get(Calendar.YEAR);
         month_x = cal.get(Calendar.MONTH)+1;
@@ -48,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         dateList = new ArrayList<Date>();
         eventsList = new ArrayList<Event>();
 //        eventsList.add(new Event("title11","des","st","endd"));
-        adapter=new EventAdapter(this, R.layout.row_layout,eventsList);
-        lv.setAdapter(adapter);
+//        adapter=new EventAdapter(this, R.layout.row_layout,eventsList);
+//        lv.setAdapter(adapter);
         showDialogOnButtonClick();
     }
 
@@ -65,7 +72,26 @@ public class MainActivity extends AppCompatActivity {
 
         );
 
+        addBtn.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View v) {
+                        adapter.add(new Event("a","B","c","d"));
+                        adapter.notifyDataSetChanged();
 
+                    }
+                }
+
+        );
+//
+//        deleteBtn.setOnClickListener(
+//                new View.OnClickListener() {
+//                    public void onClick(View v) {
+//
+//
+//                    }
+//                }
+//
+//        );
     }
 
     protected Dialog onCreateDialog(int id){
@@ -124,10 +150,11 @@ public class MainActivity extends AppCompatActivity {
             if(convertView == null){
                 convertView = inflater.inflate(R.layout.row_layout,null);
             }
-            TextView title = (TextView)findViewById(R.id.title);
-            TextView description= (TextView)findViewById(R.id.description);
-            TextView start= (TextView)findViewById(R.id.startTime);
-            TextView end= (TextView)findViewById(R.id.endTime);
+//            convertView = getLayoutInflater().inflate(R.layout.row_layout, parent, false);
+            TextView title = (TextView)convertView.findViewById(R.id.title);
+            TextView description= (TextView)convertView.findViewById(R.id.description);
+            TextView start= (TextView)convertView.findViewById(R.id.startTime);
+            TextView end= (TextView)convertView.findViewById(R.id.endTime);
 
             title.setText(eventList.get(position).title);
             description.setText(eventList.get(position).description);
