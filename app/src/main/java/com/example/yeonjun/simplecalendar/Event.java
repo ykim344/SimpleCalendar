@@ -7,14 +7,18 @@ public class Event {
 
     String title;
     String description;
-    String timeStart;
-    String timeEnd;
+    int timeStartHr;
+    int timeStartMin;
+    int timeEndHr;
+    int timeEndMin;
 
-    public Event(String title, String description, String timeStart, String timeEnd){
+    public Event(String title, String description, int timeStartHr, int timeStartMin, int timeEndHr,int timeEndMin){
         this.title = title;
         this.description=description;
-        this.timeStart = timeStart;
-        this.timeEnd = timeEnd;
+        this.timeStartHr = timeStartHr;
+        this.timeStartMin = timeStartMin;
+        this.timeEndHr = timeEndHr;
+        this.timeEndMin = timeEndMin;
     }
 
 

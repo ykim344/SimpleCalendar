@@ -21,7 +21,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/actTitle" />
+        android:id="@+id/actTitle"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/actDescription" />
+        android:id="@+id/actDescription"
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,6 +43,30 @@
         android:text="Start Time"
         android:id="@+id/StartTime"
         android:textSize="20dp" />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Hour(0~23)"
+            android:id="@+id/text1"
+            android:textSize="20dp"
+            android:layout_weight="1" />
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Minute(0~59)"
+            android:id="@+id/text2"
+            android:textSize="20dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -54,7 +80,8 @@
             android:ems="10"
             android:id="@+id/startingHour"
             android:layout_weight="1"
-            android:text="put starting hour" />
+            android:text=""
+            android:layout_marginBottom="20dp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -63,7 +90,8 @@
             android:ems="10"
             android:id="@+id/startingMin"
             android:layout_weight="1"
-            android:text="put starting min" />
+            android:text=""
+            android:layout_marginBottom="20dp" />
     </LinearLayout>
 
     <TextView
@@ -72,6 +100,29 @@
         android:text="End Time"
         android:id="@+id/EndTime"
         android:textSize="20dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Hour(0~23)"
+            android:id="@+id/text3"
+            android:textSize="20dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Minute(0~59)"
+            android:id="@+id/text4"
+            android:textSize="20dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -84,7 +135,8 @@
             android:ems="10"
             android:id="@+id/endingHour"
             android:layout_weight="1"
-            android:text="put starting hour" />
+            android:text=""
+            android:layout_marginBottom="20dp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -93,7 +145,8 @@
             android:ems="10"
             android:id="@+id/endingMin"
             android:layout_weight="1"
-            android:text="put starting min" />
+            android:text=""
+            android:layout_marginBottom="20dp" />
     </LinearLayout>
 
     <Button
@@ -101,6 +154,5 @@
         android:layout_height="wrap_content"
         android:text="Add an Event"
         android:id="@+id/eventaddbutton"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp" />
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
