@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     static ArrayList<Date> dateList;
     static ArrayList<Event> eventsList;
     EventAdapter adapter;
-    Event workingEvent;
+    static boolean isDeleteSelected;
 
     static final int DILOG_ID = 0;
     @Override
@@ -51,12 +51,16 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                workingEvent = eventsList.get(position);
+                if(isDeleteSelected){
+                    eventsList.remove(position);
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
 
         //currDate = null;
         if(currDate==null){
+            isDeleteSelected = false;
             dateList = new ArrayList<Date>();
             eventsList = new ArrayList<Event>();
             final Calendar cal = Calendar.getInstance();
@@ -81,8 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         selectBtn.setOnClickListener(
+
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        isDeleteSelected = false;
                         showDialog(DILOG_ID);
                     }
                 }
@@ -92,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         addBtn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
+                        isDeleteSelected = false;
                         if(currDate!=null){
                             Intent i = new Intent(MainActivity.this, EventAddActivity.class);
                             startActivity(i);
@@ -108,15 +115,9 @@ public class MainActivity extends AppCompatActivity {
         deleteBtn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        int pos = lv.getCheckedItemPosition();
+                        isDeleteSelected = true;
+                        Toast.makeText(getApplicationContext(),"Choose Event(s)",Toast.LENGTH_SHORT).show();
 
-                        if (pos>-1){
-                            adapter.remove(eventsList.get(pos));
-                            adapter.notifyDataSetChanged();
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(),"select item first",Toast.LENGTH_SHORT).show();
-                        }
                     }
                 }
 
@@ -143,14 +144,14 @@ public class MainActivity extends AppCompatActivity {
                 if(temp.year == year_x&&temp.month==month_x&&temp.day==day_x){
                     currDate = temp;
                     visitedDate=true;
-                    Toast.makeText(MainActivity.this, "visted date", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
             if(!visitedDate){
                 currDate = new Date(year_x,month_x,day_x);
                 dateList.add(currDate);
-                Toast.makeText(MainActivity.this, "new date created", Toast.LENGTH_SHORT).show();
+
             }
 
             eventsList = currDate.eventList;
