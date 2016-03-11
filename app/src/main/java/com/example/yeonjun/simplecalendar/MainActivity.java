@@ -2,9 +2,7 @@ package com.example.yeonjun.simplecalendar;
 //https://www.youtube.com/watch?v=WnTKJKNB4kc
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.app.Fragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
