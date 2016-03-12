@@ -113,8 +113,13 @@ public class MainActivity extends AppCompatActivity {
         deleteBtn.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        isDeleteSelected = true;
-                        Toast.makeText(getApplicationContext(),"Choose Event(s)",Toast.LENGTH_SHORT).show();
+                        if(currDate!=null){
+                            isDeleteSelected = true;
+                            Toast.makeText(getApplicationContext(),"Choose Event(s)",Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            Toast.makeText(MainActivity.this,"Select a day first",Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 }
